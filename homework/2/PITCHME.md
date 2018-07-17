@@ -4,7 +4,99 @@
 
 ###### 10_temperature_object
 
-Will be merged from Serhii's fork
+Constructor implementations
+
+```ruby
+def initialize(hash)
+  @farenheit = hash[:f]
+  @celsium = hash[:c]
+  @farenheit ||= (@celsium.to_f * 9 / 5) + 32 unless @celsium.nil?
+  @celsium = (@farenheit - 32) * 5 / 9 unless @farenheit.nil?
+end
+
+def initialize(opts = nil)
+  opts = {
+    f: nil,
+    c: nil
+  }.merge(opts || {})
+  @f = opts[:f]
+  @c = opts[:c]
+end
+```
+@[1-6](Too much logic in a constructor is bad)
+@[8-15](Too much logic in a constructor is bad)
+@[9-12](Hashes have a default value that is returned when accessing keys that do not exist in the hash. If no default is set nil is used.)
+@[13-14](Don't forget to use communicative variable name)
+
++++
+
+###### 10_temperature_object
+
+```ruby
+class Temperature
+  def initialize(opts = {})
+    @fahrenheit = opts[:f]
+    @celsius = opts[:c]
+  end
+  
+  def in_fahrenheit
+    @fahrenheit ||= ((@celsius * 1.8) + 32)
+  end
+  
+  def in_celsius
+    @celsius ||= ((@fahrenheit.to_f - 32) / 1.8).round
+  end
+end
+
+t = Temperature.new(f: 10, c: 10)
+#=> #<Temperature:0x00557492003b40 @fahrenheit=10, @celsius=10>
+t.in_fahrenheit
+#=> 10
+t.in_celsius
+#=> 10 
+```
+@[1-14](Possible bug)
+@[16-21](Why)
+
++++
+
+###### 10_temperature_object
+
+Good solution
+
+```ruby
+class Temperature
+  def initialize(options)
+    @in_fahrenheit = options[:f] || options[:c] * (9.0 / 5) + 32
+  end
+
+  attr_reader :in_fahrenheit
+
+  def in_celsius
+    @in_celsius ||= (@in_fahrenheit - 32) * (5.0 / 9)
+  end
+  
+  def self.from_celsius(degrees_celsius)
+    new(c: degrees_celsius)
+  end
+
+  def self.from_fahrenheit(degrees_fahrenheit)
+    new(f: degrees_fahrenheit)
+  end
+end
+
+class Celsius < Temperature
+  def initialize(celsius)
+    super(c: celsius)
+  end
+end
+
+class Fahrenheit < Temperature
+  def initialize(fahrenheit)
+    super(f: fahrenheit)
+  end
+end
+```
 
 ---
 
