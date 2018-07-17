@@ -184,12 +184,11 @@ What does the following code print? Explain what happens when the `#meaning_of_l
 ```ruby
 class Something
   def meaning_of_life
-    @result ||= result
-    "The meaning of life is the number #{@result}"
+    "The meaning of life is the number #{result}"
   end
 
   def result
-    Random.rand(1000)
+    @result ||= Random.rand(1000)
   end
 end
 
@@ -200,12 +199,20 @@ something.meaning_of_life
 +++
 
 ```ruby
-The meaning of life is the number 4
-```
+>> something = Something.new
+=> #<Something:0x00564a83692570>
+>> something.meaning_of_life
+=> "The meaning of life is the number 499"
+>> something.meaning_of_life
+=> "The meaning of life is the number 499"
+>> something.meaning_of_life
+=> "The meaning of life is the number 499"
 
-When the `#meaning_of_life` method is run, the return value of the `#result` method is assigned to the `@result` instance variable, but only when `@result` is `nil`. When the `#meaning_of_life` method is initially run, `@result` is `nil`, so the code in the `#result` method is executed. When the `#meaning_of_life` is run again, `@result` is not `nil`, so the `#result` method is not executed.
-<br>
-The `||=` operator (pronounced "or-equal operator") is useful for caching values in instance variables and preventing code from needlessly running when values have already been calculated.
+>>something2 = Something.new
+=> #<Something:0x00564a8363f000>
+>> something2.meaning_of_life
+=> "The meaning of life is the number 850"
+```
 
 ---
 
