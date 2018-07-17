@@ -208,7 +208,7 @@ something.meaning_of_life
 >> something.meaning_of_life
 => "The meaning of life is the number 499"
 
->>something2 = Something.new
+>> something2 = Something.new
 => #<Something:0x00564a8363f000>
 >> something2.meaning_of_life
 => "The meaning of life is the number 850"
