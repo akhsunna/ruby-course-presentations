@@ -141,17 +141,17 @@ A call to `#super()` invokes the parent method without any arguments, as presuma
 What does the following code print.
 
 ```ruby
-cool = "Beans"
-def dinner_plans()
+cool = 'Beans'
+def dinner_plans
   puts cool
 end
 
-dinner_plans()
+dinner_plans
 ```
 
 +++
 
-This raises an error because the cool variable is defined outside the dinner_plans() method.
+This raises an error because the cool variable is defined outside the `#dinner_plans` method.
 
 ---
 
