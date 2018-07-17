@@ -24,7 +24,7 @@ def initialize(opts = nil)
 end
 ```
 @[1-6](Too much logic in a constructor is bad)
-@[8-15](Too much logic in a constructor is bad)
+@[8-15]()
 @[9-12](Hashes have a default value that is returned when accessing keys that do not exist in the hash. If no default is set nil is used.)
 @[13-14](Don't forget to use communicative variable name)
 
@@ -56,7 +56,7 @@ t.in_celsius
 #=> 10 
 ```
 @[1-14](Possible bug)
-@[16-21](Why)
+@[16-21](Why bug)
 
 +++
 
@@ -97,6 +97,9 @@ class Fahrenheit < Temperature
   end
 end
 ```
+@[1-10]()
+@[12-19]()
+@[21-31]()
 
 ---
 
