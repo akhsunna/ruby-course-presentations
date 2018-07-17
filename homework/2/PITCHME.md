@@ -328,7 +328,7 @@ Alternative implementation
 
 ###### 12_rpn_calculator
 
-Without analysing complex algorithm just review some details:
+Without analysing complex algorithm <br> just review some details:
 
 ```ruby
 # Ex.1
@@ -352,12 +352,6 @@ elsif token == '*'
 end
 
 # Ex.3
-tokens.each_index do |i|
-  tokens[i] = tokens[i].to_sym if %w[+ - * /].include?(tokens[i])
-  tokens[i] = Integer(tokens[i]) unless %i[+ - * /].include?(tokens[i])
-end
-
-# Ex.4
 def last_el
   element = calculator.pop
   if element.nil?
@@ -366,12 +360,12 @@ def last_el
   return element
 end
 
-# Ex.5
+# Ex.4
 number_2 = @stack.pop
 number_1 = @stack.pop
 @stack.push(number_1 * number_2)
 
-# Ex.6
+# Ex.5
 @tokens.map! do |x|
   x = if x == '+'
         :+
@@ -395,24 +389,30 @@ t.split.map do |s|
   end
 end
 
-# Ex.7
+# Ex.6
 pol.split(' ').map{|n| n.to_i.to_s == n ? n.to_i : n.to_sym}
 
-# Ex.8
+# Ex.7
 @stack[@stack.size - 1]
 
-# Ex.9
+# Ex.8
 tokens(pol).chunk{|n| n.is_a?(Integer)}.each{|e,a| e == true ? a.each{|a| push(a) } : a.each {|o| (opps[o].call) }}
+
+# Ex.9
+tokens.each_index do |i|
+  tokens[i] = tokens[i].to_sym if %w[+ - * /].include?(tokens[i])
+  tokens[i] = Integer(tokens[i]) unless %i[+ - * /].include?(tokens[i])
+end
 ```
 @[2-8]
 @[11-19]
-@[22-25]
-@[28-34]
-@[37-39]
-@[42-54]
-@[56-63]
-@[66]
+@[22-28]
+@[31-37]
+@[40-42]
+@[45-57]
+@[59-66]
 @[69]
+@[72]
 
 ---
 
