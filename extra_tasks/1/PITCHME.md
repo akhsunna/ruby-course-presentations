@@ -42,7 +42,6 @@ bob is truthy
 What is the value of the variable `upcased` in the below piece of code?
 
 ```ruby
-
   upcased = %w[one two three].map {|n| puts n.upcase }
   
 ```
@@ -220,10 +219,8 @@ p BEST_NOLAN_MOVIE
 
 +++
 
-```ruby 
-
+```ruby
 "Interstellar"
-
 ```
 
 BEST_MOVIE is a constant and can be reassigned to another value just like other variables. 
