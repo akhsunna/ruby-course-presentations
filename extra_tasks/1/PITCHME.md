@@ -20,14 +20,21 @@ val2 = (true && false)     # results in val2 being equal to false
 Which of the expressions listed below will result in "false"?
 
 ```ruby
-true    ? "true" : "false"
-false   ? "true" : "false"
-nil     ? "true" : "false"
-1       ? "true" : "false"
-0       ? "true" : "false"
-"false" ? "true" : "false"
-""      ? "true" : "false"
-[]      ? "true" : "false"
+if 'bob'
+  puts 'bob is truthy'
+else
+  puts 'bob is falsey'
+end
+```
+
++++
+
+Answer:
+
+```ruby
+
+bob is truthy
+
 ```
 
 ---
@@ -35,7 +42,9 @@ nil     ? "true" : "false"
 What is the value of the variable `upcased` in the below piece of code?
 
 ```ruby
+
   upcased = %w[one two three].map {|n| puts n.upcase }
+  
 ```
 
 +++
@@ -46,6 +55,21 @@ ONE
 TWO
 THREE
 => [nil, nil, nil]
+```
+
+---
+
+What does the following expression evaluate to?
+
+```ruby
+3 / 2
+```
+
++++
+
+```ruby
+>> 3 / 2
+1
 ```
 
 ---
@@ -114,5 +138,99 @@ A call to `super` invokes the parent method with the same arguments that were pa
 A call to `super()` invokes the parent method without any arguments, as presumably expected. As always, being explicit in your code is a good thing.
 
 ---
+
+What does the following code print.
+
+```ruby
+cool = "Beans"
+def dinner_plans()
+  puts cool
+end
+
+dinner_plans()
+```
+
++++
+
+This raises an error because the cool variable is defined outside the dinner_plans() method.
+
+---
+
+```ruby
+class Dog
+  def speak
+    'woof woof'
+  end
+end
+```
+
+What does the following code return? 
+
+```ruby
+Dog.speak
+```
+
++++
+
+```ruby
+
+NoMethodError: undefined method `speak' for Dog:Class
+
+```
+
+---
+
+What does the following code print? Explain what happens when the `#meaning_of_life` method is run multiple times for a given object.
+
+```ruby
+class Something
+  def meaning_of_life
+    @result ||= result
+    "The meaning of life is the number #{@result}"
+  end
+
+  def result
+    Random.rand(1000)
+  end
+end
+
+something = Something.new
+something.meaning_of_life
+```
+
++++
+
+```ruby
+The meaning of life is the number 4
+```
+
+When the `#meaning_of_life` method is run, the return value of the `#result` method is assigned to the `@result` instance variable, but only when `@result` is `nil`. When the `#meaning_of_life` method is initially run, `@result` is `nil`, so the code in the `#result` method is executed. When the `#meaning_of_life` is run again, `@result` is not `nil`, so the `#result` method is not executed.
+<br>
+The `||=` operator (pronounced "or-equal operator") is useful for caching values in instance variables and preventing code from needlessly running when values have already been calculated.
+
+---
+
+What does the following code print? Explain.
+
+```ruby
+BEST_NOLAN_MOVIE = 'Inception'
+BEST_NOLAN_MOVIE = 'Interstellar'
+p BEST_NOLAN_MOVIE
+```
+
++++
+
+```ruby 
+
+"Interstellar"
+
+```
+
+BEST_MOVIE is a constant and can be reassigned to another value just like other variables. 
+Constants are not constant if they are being reassigned, so reassigning constants is not advisable. 
+Ruby will give you a warning when you reassign a constant, but does not raise an exception and allows the reassignment to take place.
+
+
+
 
 
